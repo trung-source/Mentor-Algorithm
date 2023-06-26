@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block content %} 
+<h1 align='center'>Notes</h1>
+<ul class="list-group list-group-flush" id='note'>
+    {% for note in user.notes %}
+    <li class="list-group-item">{{note.data}}</li>
+    {% endfor %}
+</ul>
+<div class="container-fluid px-1 wow flipInX">
+
+    <form method="POST">
+        
+        <!-- <textarea name="note" id="note" class="form-control">
+        </textarea> -->
+        {% for each in Node_all %}
+
+
+            {% if loop.index >= 100 %}
+                {% if loop.index % 2 == 0 %}
+
+                    <label for="checkin" class="font-alt font-size-14 px-0 text-danger">NodY {{ (loop.index/2)|int }}</label>
+                    <input type="text" value="{{ each }}" name="node-{{ loop.index }}" class="px-1 box" placeholder="alpha">
+                {% else %}
+
+                    <label for="checkin" class="font-alt font-size-14 px-0 text-primary">NodX {{ (loop.index/2+1)|int }}</label>
+                    <input type="text" value="{{ each }}" name="node-{{ loop.index }}" class="px-1 box" placeholder="alpha">
+                {% endif %}
+                
+            {% else %}
+                {% if loop.index % 2 == 0 %}
+                    <label for="checkin" class="font-alt font-size-14 px-0 text-danger">Node Y {{ (loop.index/2)|int }}</label>
+                    <input type="text" value="{{ each }}" name="node-{{ loop.index }}" class="px-0 box" placeholder="alpha">
+                {% else %}
+                    <label for="checkin" class="font-alt font-size-14 px-0 text-primary">Node X {{ (loop.index/2+1)|int }}</label>
+                    <input type="text" value="{{ each }}" name="node-{{ loop.index }}" class="px-0 box" placeholder="alpha">
+      
+
+                {% endif %}
+                
+            {% endif %}
+        
+               {% endfor %}
+        <br>
+        <br>
+
+        <label for="checkin" class="font-alt font-size-12 px-2 text-info">Umin</label>
+
+        <input type="text" name="umin" class="box" value="{{Umin}}" placeholder="Umin">
+        <label for="checkin" class="font-alt font-size-12 px-2 text-info">Alpha</label>
+
+        <input type="text" name="alpha" class="box" value="{{Alpha}}" placeholder="alpha">
+        <!-- <input type="text" name="node" class="box" placeholder="Node cach nhau bang dau cach"> -->
+
+        <br>
+
+                           
+        <br />
+        <div align="center">
+            <button type="submit" class='btn btn-primary font-alt'>
+                Submit
+            </button>
+        </div>
+    </form>
+
+    <h1>Flask and matplotlib</h1>
+
+    <h2>ALGORITHM REPRESENTAION</h2>
+
+    <!-- <form method=get action="/">
+      <input name="num_x_points" type=number value="{{num_x_points}}" />
+      <input type=submit value="update graph">
+    </form> -->
+
+    <h3>Mentor 2</h3>
+    <img src="/Mentor2-{{Umin}}-{{Alpha}}-{{Node_all}}.png"
+         alt="random points as png"
+         height="800"
+    >
+
+    
+<!-- 
+    <h3>Mentor 2</h3>
+    <img src="/Mentor2-{{Umin}}-{{Alpha}}-{{Node_all}}.png"
+         alt="random points as png"
+         height="800"
+    > -->
+
+{% endblock %}
+</div>
